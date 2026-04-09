@@ -36,27 +36,30 @@ const { title, description = 'Accept Pix and Latin America\'s most popular payme
     <Footer />
 
     <script>
-      import { animate, inView, stagger } from 'motion';
+      import { animateMini, inView } from 'motion';
 
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       if (!prefersReducedMotion) {
-        const nav = document.querySelector('[data-motion-nav]');
-        const footer = document.querySelector('[data-motion-footer]');
-        const sections = document.querySelectorAll('[data-motion-section]');
-        const orbs = document.querySelectorAll('.orb-blue, .orb-cyan');
+        const nav = document.querySelector<HTMLElement>('[data-motion-nav]');
+        const footer = document.querySelector<HTMLElement>('[data-motion-footer]');
+        const sections = document.querySelectorAll<HTMLElement>('[data-motion-section]');
+        const orbs = document.querySelectorAll<HTMLElement>('.orb-blue, .orb-cyan');
 
         if (nav) {
-          animate(
+          animateMini(
             nav,
-            { opacity: [0, 1], y: [-20, 0] },
-            { duration: 0.55, ease: 'ease-out' }
+            {
+              opacity: [0, 1],
+              transform: ['translateY(-20px)', 'translateY(0px)'],
+            },
+            { duration: 0.55, ease: 'easeOut' }
           );
         }
 
         sections.forEach((section) => {
           const targets = Array.from(
-            section.querySelectorAll(
+            section.querySelectorAll<HTMLElement>(
               [
                 '[data-motion-item]',
                 '.inline-flex',
@@ -87,19 +90,21 @@ const { title, description = 'Accept Pix and Latin America\'s most popular payme
                 section.dataset.motionPlayed = 'true';
               }
 
-              animate(
-                revealTargets,
-                {
-                  opacity: [0, 1],
-                  y: [26, 0],
-                  filter: ['blur(6px)', 'blur(0px)'],
-                },
-                {
-                  duration: 0.55,
-                  ease: 'ease-out',
-                  delay: stagger(0.06, { startDelay: 0.05 }),
-                }
-              );
+              revealTargets.forEach((target, index) => {
+                animateMini(
+                  target,
+                  {
+                    opacity: [0, 1],
+                    transform: ['translateY(26px)', 'translateY(0px)'],
+                    filter: ['blur(6px)', 'blur(0px)'],
+                  },
+                  {
+                    duration: 0.55,
+                    ease: 'easeOut',
+                    delay: 0.05 + index * 0.06,
+                  }
+                );
+              });
             },
             { margin: '-10% 0px -5% 0px' }
           );
@@ -109,10 +114,13 @@ const { title, description = 'Accept Pix and Latin America\'s most popular payme
           inView(
             footer,
             () => {
-              animate(
+              animateMini(
                 footer,
-                { opacity: [0, 1], y: [24, 0] },
-                { duration: 0.6, ease: 'ease-out' }
+                {
+                  opacity: [0, 1],
+                  transform: ['translateY(24px)', 'translateY(0px)'],
+                },
+                { duration: 0.6, ease: 'easeOut' }
               );
             },
             { margin: '0px 0px -5% 0px' }
@@ -123,15 +131,18 @@ const { title, description = 'Accept Pix and Latin America\'s most popular payme
           const yShift = index % 2 === 0 ? -18 : 14;
           const xShift = index % 2 === 0 ? 12 : -10;
 
-          animate(
+          animateMini(
             orb,
             {
-              y: [0, yShift, 0],
-              x: [0, xShift, 0],
+              transform: [
+                'translate(0px, 0px)',
+                `translate(${xShift}px, ${yShift}px)`,
+                'translate(0px, 0px)',
+              ],
             },
             {
               duration: 11 + index,
-              ease: 'ease-in-out',
+              ease: 'easeInOut',
               repeat: Infinity,
             }
           );

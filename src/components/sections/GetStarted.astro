@@ -55,7 +55,7 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" data-select-region>
           <div>
             <label for="contact-company" class="block text-sm font-heading font-semibold text-text-primary mb-2">
               Company
@@ -73,7 +73,7 @@
             <label for="contact-volume-trigger" class="block text-sm font-heading font-semibold text-text-primary mb-2">
               Monthly Payment Volume
             </label>
-            <div class="relative" data-select>
+            <div class="relative z-base" data-select>
               <input id="contact-volume" name="volume" type="hidden" value="" />
               <button
                 id="contact-volume-trigger"
@@ -114,11 +114,11 @@
           </div>
         </div>
 
-        <div>
+        <div data-select-region>
           <label for="contact-use-case-trigger" class="block text-sm font-heading font-semibold text-text-primary mb-2">
             Primary Use Case
           </label>
-          <div class="relative" data-select>
+          <div class="relative z-base" data-select>
             <input id="contact-use-case" name="useCase" type="hidden" value="" />
             <button
               id="contact-use-case-trigger"
@@ -187,40 +187,51 @@
 </section>
 
 <script>
-  const selectWrappers = Array.from(document.querySelectorAll('[data-select]'));
+  const selectWrappers: HTMLElement[] = Array.from(document.querySelectorAll('[data-select]'));
 
-  function resetWrapperLayer(wrapper) {
-    wrapper.style.zIndex = '';
+  function closeSelect(wrapper: HTMLElement) {
+    wrapper.classList.remove('z-popover');
+    wrapper.classList.add('z-base');
 
     const menu = wrapper.querySelector('[data-select-menu]');
-    if (menu instanceof HTMLElement) {
-      menu.style.zIndex = '';
+    const trigger = wrapper.querySelector('[data-select-trigger]');
+    const icon = wrapper.querySelector('[data-select-icon]');
+
+    menu?.classList.add('hidden');
+    trigger?.setAttribute('aria-expanded', 'false');
+    icon?.classList.remove('rotate-180');
+
+    const region = wrapper.closest('[data-select-region]');
+    if (region instanceof HTMLElement) {
+      region.classList.remove('relative', 'z-dropdown');
     }
   }
 
-  function elevateWrapperLayer(wrapper) {
-    wrapper.style.zIndex = '9998';
+  function openSelect(wrapper: HTMLElement) {
+    wrapper.classList.remove('z-base');
+    wrapper.classList.add('z-popover');
 
     const menu = wrapper.querySelector('[data-select-menu]');
-    if (menu instanceof HTMLElement) {
-      menu.style.zIndex = '9999';
+    const trigger = wrapper.querySelector('[data-select-trigger]');
+    const icon = wrapper.querySelector('[data-select-icon]');
+
+    menu?.classList.remove('hidden');
+    trigger?.setAttribute('aria-expanded', 'true');
+    icon?.classList.add('rotate-180');
+
+    const region = wrapper.closest('[data-select-region]');
+    if (region instanceof HTMLElement) {
+      region.classList.add('relative', 'z-dropdown');
     }
   }
 
-  function closeAllSelectMenus(except) {
+  function closeAllSelectMenus(exceptWrapper?: HTMLElement) {
     selectWrappers.forEach((wrapper) => {
-      if (except && wrapper === except) {
+      if (exceptWrapper && wrapper === exceptWrapper) {
         return;
       }
 
-      const trigger = wrapper.querySelector('[data-select-trigger]');
-      const menu = wrapper.querySelector('[data-select-menu]');
-      const icon = wrapper.querySelector('[data-select-icon]');
-
-      menu?.classList.add('hidden');
-      trigger?.setAttribute('aria-expanded', 'false');
-      icon?.classList.remove('rotate-180');
-      resetWrapperLayer(wrapper);
+      closeSelect(wrapper);
     });
   }
 
@@ -228,22 +239,17 @@
     const trigger = wrapper.querySelector('[data-select-trigger]');
     const label = wrapper.querySelector('[data-select-label]');
     const menu = wrapper.querySelector('[data-select-menu]');
-    const icon = wrapper.querySelector('[data-select-icon]');
     const hiddenInput = wrapper.querySelector('input[type="hidden"]');
     const options = Array.from(wrapper.querySelectorAll('[data-select-option]'));
 
     trigger?.addEventListener('click', () => {
       const isOpen = !menu?.classList.contains('hidden');
 
-      closeAllSelectMenus(wrapper);
-
       if (!isOpen) {
-        elevateWrapperLayer(wrapper);
-        menu?.classList.remove('hidden');
-        trigger?.setAttribute('aria-expanded', 'true');
-        icon?.classList.add('rotate-180');
+        closeAllSelectMenus(wrapper);
+        openSelect(wrapper);
       } else {
-        resetWrapperLayer(wrapper);
+        closeSelect(wrapper);
       }
     });
 
