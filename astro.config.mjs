@@ -5,6 +5,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://guilherme-schumann.github.io',
+  base: '/epagpos',
   integrations: [react()],
   vite: {
     plugins: [tailwindcss()],
