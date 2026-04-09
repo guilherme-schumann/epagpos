@@ -1,0 +1,70 @@
+---
+const steps = [
+  {
+    number: '01',
+    title: 'Set your price in your local currency',
+    description: 'You continue operating in Euros, Pounds, or Dollars — exactly as you do today. No currency management, no extra accounting.',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',
+  },
+  {
+    number: '02',
+    title: 'Customer pays in their local currency',
+    description: 'Your customer sees the price in Reais (or their local currency) and pays with Pix or another preferred local method. It feels native and familiar.',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>',
+  },
+  {
+    number: '03',
+    title: 'Payment confirmed instantly',
+    description: 'Unlike card transactions that take days to settle, Pix payments are confirmed in real time. You know immediately that the money is on its way.',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m13 2 5.464 5.464a1 1 0 0 1 0 1.414L7.636 19.707a1 1 0 0 1-1.414 0L2 15.464"/><path d="m8 10 4 4"/><path d="m22 2-8.293 8.293"/></svg>',
+  },
+  {
+    number: '04',
+    title: 'Funds settled internationally to your account',
+    description: 'epagpos handles the cross-border settlement, FX conversion, and compliance. You receive funds in your currency, on your schedule.',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>',
+  },
+];
+---
+
+<section id="how-it-works" class="relative py-16 sm:py-24 md:py-32 bg-surface-raised">
+  <div class="bg-dot-pattern absolute inset-0 pointer-events-none"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
+    <!-- Section header -->
+    <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-xs text-brand-primary mb-6">
+        How It Works
+      </div>
+      <h2 class="text-2xl sm:text-3xl md:text-5xl font-heading font-bold leading-tight">
+        Four Simple Steps.<br />
+        <span class="text-gradient-brand">Zero Complexity.</span>
+      </h2>
+      <p class="mt-6 text-lg text-text-secondary leading-relaxed">
+        Getting started with epagpos is fast and seamless. There's no need to rebuild your payments stack or navigate complex integrations.
+      </p>
+    </div>
+
+    <!-- Steps -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      {steps.map((step) => (
+        <div class="glass-card p-5 sm:p-8 rounded-2xl group hover:border-brand-primary/20 transition-all duration-normal relative overflow-hidden">
+          <!-- Step number watermark -->
+          <span class="absolute top-4 right-6 text-6xl font-heading font-bold text-text-primary/[0.04] select-none">{step.number}</span>
+
+          <div class="flex items-start gap-5">
+            <!-- Icon -->
+            <div class="shrink-0 w-12 h-12 rounded-xl bg-brand-primary/10 flex items-center justify-center text-brand-primary group-hover:shadow-glow-sm transition-shadow duration-normal" set:html={step.icon} />
+            <div>
+              <div class="flex items-center gap-3 mb-2">
+                <span class="text-xs font-heading font-bold text-brand-primary">{step.number}</span>
+                <h3 class="text-lg font-heading font-semibold text-text-primary">{step.title}</h3>
+              </div>
+              <p class="text-text-secondary text-sm leading-relaxed">{step.description}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

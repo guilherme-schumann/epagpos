@@ -1,0 +1,25 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(echo \"---EXIT:$?---\")",
+      "Bash(python .claude/skills/ui-ux-pro-max/scripts/search.py \"SaaS POS point-of-sale business management dark modern technology\" --design-system -p \"EpagPOS\" -f markdown)",
+      "Bash(PYTHONIOENCODING=utf-8 python .claude/skills/ui-ux-pro-max/scripts/search.py \"SaaS POS point-of-sale business management dark modern technology\" --design-system -p \"EpagPOS\" -f markdown)",
+      "Bash(PYTHONIOENCODING=utf-8 python .claude/skills/ui-ux-pro-max/scripts/search.py \"dark mode technology SaaS\" --domain style -n 5)",
+      "Bash(PYTHONIOENCODING=utf-8 python .claude/skills/ui-ux-pro-max/scripts/search.py \"modern technology professional clean\" --domain typography -n 5)",
+      "Bash(PYTHONIOENCODING=utf-8 python .claude/skills/ui-ux-pro-max/scripts/search.py \"SaaS technology business\" --domain color -n 5)",
+      "Bash(PYTHONIOENCODING=utf-8 python .claude/skills/ui-ux-pro-max/scripts/search.py \"hero landing page SaaS technology\" --domain landing -n 5)",
+      "Bash(PYTHONIOENCODING=utf-8 python .claude/skills/ui-ux-pro-max/scripts/search.py \"react tailwind component\" --stack react)",
+      "Bash(npm create:*)",
+      "Bash(cp -r \"c:/Users/B2ml/Desktop/b2ml/epag/epagpos-temp/\"* \"c:/Users/B2ml/Desktop/b2ml/epag/epagpos/\")",
+      "Bash(cp \"c:/Users/B2ml/Desktop/b2ml/epag/epagpos-temp/.npmrc\" \"c:/Users/B2ml/Desktop/b2ml/epag/epagpos/\")",
+      "Bash(rm -rf \"c:/Users/B2ml/Desktop/b2ml/epag/epagpos-temp\")",
+      "Bash(cp -r package.json package-lock.json tsconfig.json public src \"c:/Users/B2ml/Desktop/b2ml/epag/epagpos/\")",
+      "Bash(cp .gitignore \"c:/Users/B2ml/Desktop/b2ml/epag/epagpos/\")",
+      "Bash(cp -r .vscode \"c:/Users/B2ml/Desktop/b2ml/epag/epagpos/\")",
+      "Bash(npx astro:*)",
+      "Bash(./node_modules/.bin/astro add:*)",
+      "Bash(ls node_modules/.bin/astro*)",
+      "Bash(npm exec:*)"
+    ]
+  }
+}

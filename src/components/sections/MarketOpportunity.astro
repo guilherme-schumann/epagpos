@@ -1,0 +1,62 @@
+---
+const stats = [
+  {
+    value: '\u20AC6B+',
+    label: 'Annual consumer spending flowing from Latin America into Europe — and growing year over year',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>',
+  },
+  {
+    value: '650M+',
+    label: 'People across Latin America who rely on local payment methods as their primary way to pay',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+  },
+  {
+    value: '70M+',
+    label: 'International trips taken by Latin American travellers every year — each one a transaction opportunity',
+    icon: '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>',
+  },
+];
+---
+
+<section class="relative py-16 sm:py-24 md:py-32">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <!-- Section header -->
+    <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-xs text-brand-primary mb-6">
+        Market Opportunity
+      </div>
+      <h2 class="text-2xl sm:text-3xl md:text-5xl font-heading font-bold leading-tight">
+        Latin America Is Already<br />
+        <span class="text-gradient-brand">at Your Door</span>
+      </h2>
+      <p class="mt-6 text-lg text-text-secondary leading-relaxed">
+        Hundreds of millions of Latin American consumers are spending internationally — travelling, shopping online, and doing business across borders. But most global merchants still can't accept the way they pay. That's a revenue gap hiding in plain sight.
+      </p>
+    </div>
+
+    <!-- Stats grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {stats.map((stat) => (
+        <div class="glass-card p-6 sm:p-8 text-center group hover:border-brand-primary/20 transition-all duration-normal cursor-default">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-brand-primary/10 text-brand-primary mb-6" set:html={stat.icon} />
+          <div class="text-3xl sm:text-4xl md:text-5xl font-heading font-bold text-gradient-brand mb-4">
+            {stat.value}
+          </div>
+          <p class="text-text-secondary text-sm leading-relaxed">
+            {stat.label}
+          </p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom callout -->
+    <div class="mt-12 glass-card-brand p-8 text-center rounded-2xl">
+      <p class="text-lg md:text-xl text-text-primary leading-relaxed">
+        If you don't accept Pix and local alternative payment methods, <strong class="text-text-accent">you're leaving real revenue on the table.</strong>
+      </p>
+      <p class="mt-3 text-text-secondary">
+        This isn't just about payments. It's about opening a direct channel to one of the world's fastest-growing consumer markets — and capturing demand that's already looking for you.
+      </p>
+    </div>
+  </div>
+</section>

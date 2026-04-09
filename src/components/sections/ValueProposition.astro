@@ -1,0 +1,79 @@
+---
+const merchantBenefits = [
+  { text: 'Zero chargebacks — eliminate dispute costs', icon: 'shield' },
+  { text: 'Fees up to 65% lower than card networks', icon: 'trending-down' },
+  { text: 'Instant payment confirmation — no delays', icon: 'zap' },
+  { text: 'Higher conversion rates at checkout', icon: 'bar-chart' },
+];
+
+const consumerBenefits = [
+  { text: 'Lower fees — pay less on every transaction', icon: 'piggy-bank' },
+  { text: 'Better FX rates on international purchases', icon: 'globe' },
+  { text: 'Instant settlement — no waiting, no holds', icon: 'clock' },
+  { text: 'Pay the way they prefer — no friction', icon: 'heart' },
+];
+---
+
+<section class="relative py-16 sm:py-24 md:py-32 bg-surface-raised">
+  <div class="bg-line-pattern absolute inset-0 pointer-events-none"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
+    <!-- Section header -->
+    <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-xs text-brand-primary mb-6">
+        Value Proposition
+      </div>
+      <h2 class="text-2xl sm:text-3xl md:text-5xl font-heading font-bold leading-tight">
+        Alternative Payment Methods Are<br />
+        <span class="text-gradient-brand">Winning in Latin America</span>
+      </h2>
+      <p class="mt-6 text-lg text-text-secondary leading-relaxed">
+        In Brazil alone, Pix is present in 100% of merchant checkouts and has been adopted by more than 94% of the adult population. From everyday purchases to large cross-border transactions, Pix is the payment method consumers reach for first.
+      </p>
+    </div>
+
+    <!-- Two-column benefits -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Merchant benefits -->
+      <div class="glass-card p-8 rounded-2xl">
+        <h3 class="text-xl font-heading font-bold text-text-primary mb-6 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-primary" aria-hidden="true"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><rect width="20" height="5" x="2" y="7"/></svg>
+          </div>
+          For Merchants
+        </h3>
+        <ul class="space-y-4">
+          {merchantBenefits.map((b) => (
+            <li class="flex items-start gap-3">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-status-success mt-0.5 shrink-0" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+              <span class="text-text-secondary">{b.text}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Consumer benefits -->
+      <div class="glass-card p-8 rounded-2xl">
+        <h3 class="text-xl font-heading font-bold text-text-primary mb-6 flex items-center gap-3">
+          <div class="w-10 h-10 rounded-lg bg-brand-primary/10 flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-primary" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          For Consumers
+        </h3>
+        <ul class="space-y-4">
+          {consumerBenefits.map((b) => (
+            <li class="flex items-start gap-3">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-primary mt-0.5 shrink-0" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+              <span class="text-text-secondary">{b.text}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- Tagline -->
+    <p class="mt-12 text-center text-xl md:text-2xl font-heading font-semibold text-text-accent italic">
+      Customers pay less. Merchants keep more. Everyone wins.
+    </p>
+  </div>
+</section>

@@ -1,0 +1,52 @@
+---
+const reasons = [
+  'They use Pix and local payment methods — not Visa or Mastercard',
+  'They expect instant payments — not 3-day processing windows',
+  'They actively avoid card networks when a better option exists',
+  'They will abandon a purchase if their preferred method isn\'t available',
+];
+---
+
+<section class="relative py-16 sm:py-24 md:py-32">
+  <div class="orb-blue absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 opacity-50"></div>
+
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+      <!-- Left: content -->
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-xs text-brand-primary mb-6">
+          Why It Matters
+        </div>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-heading font-bold leading-tight mb-6">
+          Your Customers Have Changed.<br />
+          <span class="text-gradient-brand">Has Your Checkout?</span>
+        </h2>
+        <p class="text-lg text-text-secondary leading-relaxed mb-8">
+          Latin American consumers are already buying globally — from luxury retail in Paris to online subscriptions in London. But they don't pay like European or American shoppers.
+        </p>
+
+        <ul class="space-y-4">
+          {reasons.map((reason) => (
+            <li class="flex items-start gap-3">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-primary mt-0.5 shrink-0" aria-hidden="true"><path d="m5 12 5 5L20 7"/></svg>
+              <span class="text-text-secondary">{reason}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Right: callout card -->
+      <div class="glass-card-brand p-8 md:p-10 rounded-2xl">
+        <div class="mb-6">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-status-warning" aria-hidden="true"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+        </div>
+        <p class="text-xl md:text-2xl font-heading font-bold text-text-primary leading-snug mb-4">
+          If your checkout doesn't support how they pay, <span class="text-status-warning">you don't just lose the sale — you lose the customer.</span>
+        </p>
+        <p class="text-text-secondary leading-relaxed">
+          <strong class="text-text-primary">epagpos</strong> connects you to this demand instantly — no infrastructure overhaul, no regulatory headaches, no operational burden.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

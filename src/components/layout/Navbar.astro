@@ -1,0 +1,115 @@
+---
+import { ThemeToggle } from '../ui/ThemeToggle';
+import Logo from './Logo.astro';
+
+const navLinks = [
+  { label: 'How It Works', href: '#how-it-works' },
+  { label: 'Benefits', href: '#benefits' },
+  { label: 'Partners', href: '#partners' },
+  { label: 'Security', href: '#security' },
+];
+---
+
+<nav class="fixed top-4 left-4 right-4 z-50 glass-card-light rounded-2xl px-4 md:px-6 py-3 flex items-center justify-between max-w-7xl mx-auto">
+  <!-- Logo -->
+  <a href="/" class="flex items-center gap-2 cursor-pointer shrink-0" aria-label="EpagPOS Home">
+    <Logo class="h-7 sm:h-8 w-auto" />
+  </a>
+
+  <!-- Nav Links (desktop) -->
+  <div class="hidden lg:flex items-center gap-8">
+    {navLinks.map((link) => (
+      <a
+        href={link.href}
+        class="text-sm text-text-secondary hover:text-text-primary transition-colors duration-normal cursor-pointer"
+      >
+        {link.label}
+      </a>
+    ))}
+  </div>
+
+  <!-- Actions -->
+  <div class="flex items-center gap-2 sm:gap-3">
+    <ThemeToggle client:load />
+
+    <!-- CTA (hidden on small mobile, visible sm+) -->
+    <a
+      href="#get-started"
+      class="hidden sm:inline-flex bg-gradient-cta text-white text-sm font-semibold px-5 py-2.5 rounded-lg shadow-glow-cta hover:shadow-glow-cta-hover transition-all duration-normal cursor-pointer"
+    >
+      Talk to Sales
+    </a>
+
+    <!-- Mobile menu button -->
+    <button
+      id="mobile-menu-btn"
+      class="lg:hidden flex items-center justify-center w-10 h-10 rounded-lg bg-surface-card border border-border-default hover:bg-surface-card-hover transition-colors duration-normal cursor-pointer"
+      aria-label="Toggle menu"
+      aria-expanded="false"
+    >
+      <!-- Hamburger icon -->
+      <svg id="menu-icon-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-text-secondary" aria-hidden="true">
+        <line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>
+      </svg>
+      <!-- Close icon -->
+      <svg id="menu-icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-text-secondary hidden" aria-hidden="true">
+        <path d="M18 6 6 18"/><path d="m6 6 12 12"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile menu overlay -->
+<div id="mobile-menu" class="fixed inset-0 z-40 hidden">
+  <!-- Backdrop -->
+  <div id="mobile-menu-backdrop" class="absolute inset-0 bg-surface-base/80 backdrop-blur-sm"></div>
+
+  <!-- Menu panel -->
+  <div class="absolute top-20 left-4 right-4 max-w-7xl mx-auto glass-card-heavy rounded-2xl p-6">
+    <div class="flex flex-col gap-1">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class="mobile-menu-link text-base font-heading font-medium text-text-secondary hover:text-text-primary hover:bg-surface-card-hover px-4 py-3 rounded-xl transition-colors duration-normal cursor-pointer"
+        >
+          {link.label}
+        </a>
+      ))}
+      <!-- Mobile CTA -->
+      <a
+        href="#get-started"
+        class="mobile-menu-link mt-4 inline-flex items-center justify-center bg-gradient-cta text-white font-heading font-semibold px-6 py-3 rounded-xl shadow-glow-cta cursor-pointer text-base"
+      >
+        Talk to Sales
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  const backdrop = document.getElementById('mobile-menu-backdrop');
+  const iconOpen = document.getElementById('menu-icon-open');
+  const iconClose = document.getElementById('menu-icon-close');
+  const menuLinks = document.querySelectorAll('.mobile-menu-link');
+
+  function toggleMenu() {
+    const isOpen = !menu?.classList.contains('hidden');
+    if (isOpen) {
+      menu?.classList.add('hidden');
+      iconOpen?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+      btn?.setAttribute('aria-expanded', 'false');
+    } else {
+      menu?.classList.remove('hidden');
+      iconOpen?.classList.add('hidden');
+      iconClose?.classList.remove('hidden');
+      btn?.setAttribute('aria-expanded', 'true');
+    }
+  }
+
+  btn?.addEventListener('click', toggleMenu);
+  backdrop?.addEventListener('click', toggleMenu);
+  menuLinks.forEach((link) => link.addEventListener('click', toggleMenu));
+</script>

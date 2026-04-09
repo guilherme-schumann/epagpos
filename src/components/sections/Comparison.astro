@@ -1,0 +1,59 @@
+---
+const rows = [
+  { metric: 'Customer fees', cards: '~8.0%', pix: '~3.3%', pixWin: true },
+  { metric: 'Total paid by customer', cards: '\u20AC108.00', pix: '\u20AC103.38', pixWin: true },
+  { metric: 'Merchant processing fee', cards: '2.65%', pix: '0.9%', pixWin: true },
+  { metric: 'Merchant net received', cards: '\u20AC97.30', pix: '\u20AC99.10', pixWin: true },
+  { metric: 'Chargeback risk', cards: 'Yes', pix: 'None', pixWin: true },
+  { metric: 'Settlement speed', cards: '2\u20135 business days', pix: 'Instant', pixWin: true },
+];
+---
+
+<section id="comparison" class="relative py-16 sm:py-24 md:py-32">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6">
+    <!-- Section header -->
+    <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-xs text-brand-primary mb-6">
+        Head-to-Head
+      </div>
+      <h2 class="text-2xl sm:text-3xl md:text-5xl font-heading font-bold leading-tight">
+        Why Pix Wins: Cards vs. Pix<br />
+        <span class="text-gradient-brand">on a &euro;100 Transaction</span>
+      </h2>
+      <p class="mt-6 text-lg text-text-secondary leading-relaxed">
+        See the real financial impact of accepting Pix versus traditional card networks. On every single transaction, both your customers and your bottom line come out ahead.
+      </p>
+    </div>
+
+    <!-- Comparison table -->
+    <div class="glass-card rounded-2xl overflow-x-auto">
+      <div class="min-w-[420px]">
+        <!-- Table header -->
+        <div class="grid grid-cols-3 bg-surface-card border-b border-border-default">
+          <div class="p-3 sm:p-4 md:p-6 text-xs sm:text-sm font-heading font-semibold text-text-secondary">Metric</div>
+          <div class="p-3 sm:p-4 md:p-6 text-xs sm:text-sm font-heading font-semibold text-text-secondary text-center">Cards</div>
+          <div class="p-3 sm:p-4 md:p-6 text-xs sm:text-sm font-heading font-semibold text-text-accent text-center flex items-center justify-center gap-1 sm:gap-2">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-brand-primary shrink-0" aria-hidden="true"><path d="m13 2 5.464 5.464a1 1 0 0 1 0 1.414L7.636 19.707a1 1 0 0 1-1.414 0L2 15.464"/><path d="m8 10 4 4"/><path d="m22 2-8.293 8.293"/></svg>
+            Pix
+          </div>
+        </div>
+
+        <!-- Table rows -->
+        {rows.map((row, i) => (
+          <div class={`grid grid-cols-3 ${i < rows.length - 1 ? 'border-b border-border-default' : ''} hover:bg-surface-card-hover transition-colors duration-normal`}>
+            <div class="p-3 sm:p-4 md:p-6 text-xs sm:text-sm font-medium text-text-primary">{row.metric}</div>
+            <div class="p-3 sm:p-4 md:p-6 text-xs sm:text-sm text-text-tertiary text-center">{row.cards}</div>
+            <div class="p-3 sm:p-4 md:p-6 text-xs sm:text-sm text-center font-semibold text-status-success">{row.pix}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Bottom callout -->
+    <div class="mt-8 glass-card-brand p-6 md:p-8 rounded-2xl text-center">
+      <p class="text-text-primary leading-relaxed">
+        <strong>The bottom line:</strong> Your customer saves <span class="text-status-success font-semibold">&euro;4.62</span> per transaction. You earn <span class="text-status-success font-semibold">&euro;1.80 more</span> per transaction. Multiply that across thousands of sales, and the impact is transformative.
+      </p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,81 @@
+---
+import Logo from './Logo.astro';
+
+const currentYear = new Date().getFullYear();
+
+const footerLinks = {
+  Product: [
+    { label: 'How It Works', href: '#how-it-works' },
+    { label: 'Omnichannel', href: '#omnichannel' },
+    { label: 'Security', href: '#security' },
+    { label: 'Pricing', href: '#comparison' },
+  ],
+  Solutions: [
+    { label: 'Retail & Luxury', href: '#benefits' },
+    { label: 'Hospitality & Travel', href: '#benefits' },
+    { label: 'E-Commerce', href: '#benefits' },
+    { label: 'SaaS & Digital', href: '#benefits' },
+  ],
+  Partners: [
+    { label: 'Partner Programme', href: '#partners' },
+    { label: 'API Documentation', href: '#' },
+    { label: 'Integration Guide', href: '#' },
+  ],
+  Company: [
+    { label: 'About', href: '#' },
+    { label: 'Contact', href: '#get-started' },
+    { label: 'Privacy Policy', href: '#' },
+    { label: 'Terms of Service', href: '#' },
+  ],
+};
+---
+
+<footer class="relative bg-surface-raised border-t border-border-default">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16">
+    <div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-5 gap-8">
+      <!-- Brand column -->
+      <div class="col-span-2">
+        <a href="/" class="inline-block mb-4" aria-label="EpagPOS Home">
+          <Logo class="h-7 sm:h-8 w-auto" />
+        </a>
+        <p class="text-sm text-text-secondary leading-relaxed max-w-xs">
+          Accept Pix and Latin America's most popular payment methods with a single integration.
+        </p>
+      </div>
+
+      <!-- Link columns -->
+      {Object.entries(footerLinks).map(([title, links]) => (
+        <div>
+          <h4 class="text-sm font-heading font-semibold text-text-primary mb-4">{title}</h4>
+          <ul class="space-y-3">
+            {links.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="text-sm text-text-secondary hover:text-text-link transition-colors duration-normal cursor-pointer"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="mt-10 sm:mt-12 pt-8 border-t border-border-default flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-xs text-text-tertiary">
+        &copy; {currentYear} epagpos. All rights reserved.
+      </p>
+      <div class="flex items-center gap-6">
+        <a href="#" class="text-text-tertiary hover:text-text-secondary transition-colors duration-normal cursor-pointer" aria-label="LinkedIn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="#" class="text-text-tertiary hover:text-text-secondary transition-colors duration-normal cursor-pointer" aria-label="X (Twitter)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
