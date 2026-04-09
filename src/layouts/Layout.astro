@@ -34,6 +34,110 @@ const { title, description = 'Accept Pix and Latin America\'s most popular payme
       <slot />
     </main>
     <Footer />
+
+    <script>
+      import { animate, inView, stagger } from 'motion';
+
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!prefersReducedMotion) {
+        const nav = document.querySelector('[data-motion-nav]');
+        const footer = document.querySelector('[data-motion-footer]');
+        const sections = document.querySelectorAll('[data-motion-section]');
+        const orbs = document.querySelectorAll('.orb-blue, .orb-cyan');
+
+        if (nav) {
+          animate(
+            nav,
+            { opacity: [0, 1], y: [-20, 0] },
+            { duration: 0.55, ease: 'ease-out' }
+          );
+        }
+
+        sections.forEach((section) => {
+          const targets = Array.from(
+            section.querySelectorAll(
+              [
+                '[data-motion-item]',
+                '.inline-flex',
+                'h1',
+                'h2',
+                'h3',
+                'p',
+                'li',
+                '.glass-card',
+                '.glass-card-brand',
+                '.glass-card-heavy',
+                'a[href^="#"]',
+                'button',
+              ].join(',')
+            )
+          ).slice(0, 18);
+
+          const revealTargets = targets.length > 0 ? targets : [section];
+
+          inView(
+            section,
+            () => {
+              if (section instanceof HTMLElement && section.dataset.motionPlayed === 'true') {
+                return;
+              }
+
+              if (section instanceof HTMLElement) {
+                section.dataset.motionPlayed = 'true';
+              }
+
+              animate(
+                revealTargets,
+                {
+                  opacity: [0, 1],
+                  y: [26, 0],
+                  filter: ['blur(6px)', 'blur(0px)'],
+                },
+                {
+                  duration: 0.55,
+                  ease: 'ease-out',
+                  delay: stagger(0.06, { startDelay: 0.05 }),
+                }
+              );
+            },
+            { margin: '-10% 0px -5% 0px' }
+          );
+        });
+
+        if (footer) {
+          inView(
+            footer,
+            () => {
+              animate(
+                footer,
+                { opacity: [0, 1], y: [24, 0] },
+                { duration: 0.6, ease: 'ease-out' }
+              );
+            },
+            { margin: '0px 0px -5% 0px' }
+          );
+        }
+
+        orbs.forEach((orb, index) => {
+          const yShift = index % 2 === 0 ? -18 : 14;
+          const xShift = index % 2 === 0 ? 12 : -10;
+
+          animate(
+            orb,
+            {
+              y: [0, yShift, 0],
+              x: [0, xShift, 0],
+            },
+            {
+              duration: 11 + index,
+              ease: 'ease-in-out',
+              repeat: Infinity,
+            }
+          );
+        });
+      }
+    </script>
   </body>
 </html>
 
